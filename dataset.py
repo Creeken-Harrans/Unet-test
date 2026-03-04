@@ -65,7 +65,7 @@ class ISBI_Loader(Dataset):
 if __name__ == "__main__":
     # 这里改成你的绝对路径
     isbi_dataset = ISBI_Loader(
-        r"Deep-Learning-master\Deep-Learning-master\Pytorch-Seg\lesson-2\data\train"
+        r"./Deep-Learning-master/Deep-Learning-master/Pytorch-Seg/lesson-2/data/train"
     )
     print("数据个数：", len(isbi_dataset))
 

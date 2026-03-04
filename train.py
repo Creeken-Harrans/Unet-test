@@ -50,6 +50,6 @@ if __name__ == "__main__":
     net.to(device=device)
     # 指定训练集地址，开始训练
     data_path = (
-        r"Deep-Learning-master\Deep-Learning-master\Pytorch-Seg\lesson-2\data\train"
+        r"./Deep-Learning-master/Deep-Learning-master/Pytorch-Seg/lesson-2/data/train"
     )
     train_net(net, device, data_path)
