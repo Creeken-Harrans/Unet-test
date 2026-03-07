@@ -20,8 +20,14 @@ if __name__ == "__main__":
     net.eval()
 
     # 1️⃣ 读取所有图片路径（要加上通配符 *.png）
-    test_dir = (
-        r"Deep-Learning-master\Deep-Learning-master\Pytorch-Seg\lesson-2\data\test"
+    test_dir = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "Deep-Learning-master",
+        "Deep-Learning-master",
+        "Pytorch-Seg",
+        "lesson-2",
+        "data",
+        "test",
     )
     tests_path = glob.glob(os.path.join(test_dir, "*.png"))
     print("测试图片数量:", len(tests_path))

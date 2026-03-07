@@ -21,6 +21,8 @@ def train_net(net, device, data_path, epochs=40, batch_size=1, lr=0.00001):
     for epoch in range(epochs):
         # 训练模式
         net.train()
+        epoch_loss = 0.0
+        sample_count = 0
         # 按照batch_size开始训练
         for image, label in train_loader:
             optimizer.zero_grad()
@@ -31,14 +33,20 @@ def train_net(net, device, data_path, epochs=40, batch_size=1, lr=0.00001):
             pred = net(image)
             # 计算loss
             loss = criterion(pred, label)
-            print("Loss/train", loss.item())
-            # 保存loss值最小的网络参数
-            if loss < best_loss:
-                best_loss = loss
-                torch.save(net.state_dict(), "best_model.pth")
             # 更新参数
             loss.backward()
             optimizer.step()
+            batch_size_now = image.size(0)
+            epoch_loss += loss.item() * batch_size_now
+            sample_count += batch_size_now
+
+        epoch_loss /= sample_count
+        print(f"Epoch [{epoch + 1}/{epochs}] train_loss: {epoch_loss:.6f}")
+
+        # 保存loss值最小的网络参数
+        if epoch_loss < best_loss:
+            best_loss = epoch_loss
+            torch.save(net.state_dict(), "best_model.pth")
 
 
 if __name__ == "__main__":
